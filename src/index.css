@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.centerDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  border: 3px solid red;
+}
