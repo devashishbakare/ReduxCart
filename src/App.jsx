@@ -1,5 +1,6 @@
 import { Navbar } from "./Navbar";
 import { Cart } from "./Cart";
+import cartData from "./CartData";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
         <Navbar />
       </div>
       <div className="h-[90vh] min-h-[790px] w-[100vw] mt-1">
-        <Cart />
+        <Cart cartData={cartData} />
       </div>
     </>
   );
