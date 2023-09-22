@@ -1,8 +1,9 @@
 import React from "react";
-
 import { CartItem } from "./CartItem";
-
-export const Cart = ({ cartData = [] }) => {
+import { useSelector } from "react-redux";
+export const Cart = () => {
+  const cartItems = useSelector((state) => state.reduxCart.cartDetails);
+  const total = useSelector((state) => state.reduxCart.total);
   return (
     <>
       <div className="h-full w-full bg-[#e9ebe9] flex flex-col relative">
@@ -18,22 +19,19 @@ export const Cart = ({ cartData = [] }) => {
         </div>
         <div className="h-auto w-auto max-w-[600px] centerDiv flex-col sm:ml-5">
           <>
-            {cartData.map((cartSingleItem) => (
+            {cartItems.map((cartSingleItem) => (
               <>
-                <CartItem cartItemData={cartSingleItem} />
+                <CartItem
+                  cartItemData={cartSingleItem}
+                  key={cartSingleItem.id}
+                />
               </>
             ))}
           </>
-
-          {/* {CartData.map((data) => (
-            <>
-              <CartItem key={data.id} cartItemData={data} />
-            </>
-          ))} */}
         </div>
         <div className="absolute bottom-[1%] h-[7%] w-full min-h-[63px] flex">
           <div className="h-full w-[55%] flex items-center pl-[5%]">
-            Total : $ 0
+            Total : $ {total}
           </div>
           <div className="h-full w-[45%] flex flex-row-reverse items-center">
             <button className="h-[80%] w-[100px] bg-black rounded-[15px] text-white mr-2 md:mr-[10%]">

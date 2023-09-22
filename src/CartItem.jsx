@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { increase } from "./cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export const CartItem = ({ cartItemData }) => {
-  const { id, title, price, img, quantity } = cartItemData;
-  console.log("here we come");
+  const { id, title, price, img } = cartItemData;
+
+  console.log("rendered.." + id);
+  const [quantity, setQuantity] = useState(cartItemData.quantity);
+  const dispatch = useDispatch();
+
+  const handleIncreaseQuantity = () => {
+    dispatch(increase(id));
+  };
+
   return (
     <>
       <div className="h-[150px] w-[95vw] flex mt-2 border-2 border-gray-400 max-w-[700px]">
@@ -22,12 +32,15 @@ export const CartItem = ({ cartItemData }) => {
             <span className="h-[60%] w-full flex items-center pl-2">
               <AiOutlineMinusCircle className="text-[1.7rem]" />
               <span className="ml-5 mr-5">{quantity}</span>
-              <AiOutlinePlusCircle className="text-[1.7rem]" />
+              <AiOutlinePlusCircle
+                className="text-[1.7rem]"
+                onClick={handleIncreaseQuantity}
+              />
             </span>
           </div>
           <div className="h-[35%] w-full flex items-center pl-2 sm:h-full sm:w-[40%] sm:flex-col sm:justify-center">
-            <span className="">ItemTotal :</span>
-            <span className="">{quantity * price}</span>
+            <span className="">Price : </span>
+            <span className="">&nbsp;{price}</span>
           </div>
         </div>
       </div>

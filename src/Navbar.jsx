@@ -1,7 +1,9 @@
 import React from "react";
 import { BsCart } from "react-icons/bs";
-
+import { useSelector, useDispatch } from "react-redux";
 export const Navbar = () => {
+  const cartCount = useSelector((state) => state.reduxCart.cartItemCount);
+
   return (
     <>
       <div className="h-full w-full bg-[#e9ebe9] flex">
@@ -12,7 +14,7 @@ export const Navbar = () => {
           <div className="h-full w-[80px] mr-2 centerDiv relative">
             <BsCart className="text-[25px]" />
             <div className="absolute top-[15%] right-[20%] h-[22px] w-[22px] rounded-[50%] bg-black text-white centerDiv">
-              0
+              {cartCount}
             </div>
           </div>
         </div>
