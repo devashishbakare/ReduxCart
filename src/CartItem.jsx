@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
-import { increase } from "./cartSlice";
+import { increase, decrease } from "./cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export const CartItem = ({ cartItemData }) => {
@@ -12,6 +12,12 @@ export const CartItem = ({ cartItemData }) => {
 
   const handleIncreaseQuantity = () => {
     dispatch(increase(id));
+    setQuantity(quantity + 1);
+  };
+
+  const handleDecrease = () => {
+    dispatch(decrease(id));
+    setQuantity(quantity - 1);
   };
 
   return (
@@ -30,7 +36,10 @@ export const CartItem = ({ cartItemData }) => {
               {title}
             </span>
             <span className="h-[60%] w-full flex items-center pl-2">
-              <AiOutlineMinusCircle className="text-[1.7rem]" />
+              <AiOutlineMinusCircle
+                className="text-[1.7rem]"
+                onClick={handleDecrease}
+              />
               <span className="ml-5 mr-5">{quantity}</span>
               <AiOutlinePlusCircle
                 className="text-[1.7rem]"
